@@ -60,56 +60,6 @@ var StringPrototyped = (function (document) {
                 return new StringPrototyped(output);
             } else throw new Error('Decompression Failed. Encoder: ' + encoder);
         };
-
-
-        ctx.elem = function (domElem) {
-            return (domElem || document.body);
-        };
-        ctx.define = function (type) {
-            return document.createElement(type);
-        };
-        ctx.insert = function (type, callback) {
-            var contents = ctx.val;
-            var node = ctx.define(type);
-            node.innerText = contents;
-            ctx.elem().appendChild(node);
-            if (callback) callback(res);
-        };
-        ctx.script = function (parentElem, callback) {
-            var contents = ctx.val;
-            var srcipt = ctx.define('script');
-            srcipt.textContent = contents;
-            var res = ctx.elem(parentElem).appendChild(srcipt);
-            if (callback) callback(res, parentElem);
-        };
-        ctx.inject = function (callback, async) {
-            var url = ctx.val;
-            if (/\.js/.test(url)) {
-                var srciptElem = ctx.define('script');
-                if (srciptElem) {
-                    srciptElem.onload = function (evt) {
-                        if (callback) callback(url, evt);
-                    }
-                    if (typeof async !== 'undefined') {
-                        srciptElem.async = !!async;
-                    }
-                    srciptElem.src = url;
-                    ctx.elem().appendChild(srciptElem);
-                }
-            } else if (/\.css/.test(url)) {
-                var link = ctx.define('link');
-                link.onload = function (evt) {
-                    if (callback) callback(url, evt);
-                }
-                link.type = 'text/css';
-                link.rel = 'stylesheet';
-                link.href = url;
-                ctx.elem().appendChild(link);
-            }
-
-            return ctx;
-        };
-
         ctx.md5 = function () {
             var md5Invoker = (function () {
                 function md5(s) {
@@ -266,6 +216,59 @@ var StringPrototyped = (function (document) {
             return md5Invoker(ctx.val);
         };
 
+        // ----------------------------------------------------------------------------------------
+
+        ctx.elem = function (domElem) {
+            return (domElem || document.body);
+        };
+        ctx.define = function (type) {
+            return document.createElement(type);
+        };
+        ctx.insert = function (type, callback) {
+            var contents = ctx.val;
+            var node = ctx.define(type);
+            node.innerText = contents;
+            var res = ctx.elem().appendChild(node);
+            if (callback) callback(res);
+        };
+        ctx.script = function (parentElem, callback) {
+            var contents = ctx.val;
+            var srcipt = ctx.define('script');
+            srcipt.textContent = contents;
+            var res = ctx.elem(parentElem).appendChild(srcipt);
+            if (callback) callback(res, parentElem);
+        };
+        ctx.inject = function (callback, async) {
+            var url = ctx.val;
+            if (/\.js$/.test(url)) {
+                var srciptElem = ctx.define('script');
+                if (srciptElem) {
+                    srciptElem.onload = function (evt) {
+                        if (callback) callback(url, evt);
+                    }
+                    if (typeof async !== 'undefined') {
+                        srciptElem.async = !!async;
+                    }
+                    srciptElem.src = url;
+                    ctx.elem().appendChild(srciptElem);
+                }
+            } else if (/\.css$/.test(url)) {
+                var link = ctx.define('link');
+                link.onload = function (evt) {
+                    if (callback) callback(url, evt);
+                }
+                link.type = 'text/css';
+                link.rel = 'stylesheet';
+                link.href = url;
+                ctx.elem().appendChild(link);
+            }
+
+            return ctx;
+        };
+
+        // ----------------------------------------------------------------------------------------
+
+
         ctx.isReady = true;
 
         return ctx;
@@ -345,7 +348,7 @@ var StringPrototyped = (function (document) {
 
 })(typeof document !== 'undefined' ? document : {
     // Required DOM functionality
-    notReady: true,
+    disabled: true,
     createElement: function (type) {
         console.warn('No DOM to create element: ' + (typeof item), item);
         return { type: type };
@@ -367,11 +370,12 @@ String.prototype[''] = function (callback) {
     return ctx;
 };
 
-// expose as an AMD module
+// Expose as an AMD module
 if (typeof define === 'function' && define.amd) {
     define(StringPrototyped);
 }
 
+// Expose as CommonJS module
 if (typeof module !== 'undefined') {
     module.exports = StringPrototyped;
 }

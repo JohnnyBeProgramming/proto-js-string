@@ -73,7 +73,7 @@ var StringPrototyped = (function (document) {
             var node = ctx.define(type);
             node.innerText = contents;
             ctx.elem().appendChild(node);
-            if (callback) callback(res, parentElem);
+            if (callback) callback(res);
         };
         ctx.script = function (parentElem, callback) {
             var contents = ctx.val;
@@ -85,15 +85,17 @@ var StringPrototyped = (function (document) {
         ctx.inject = function (callback, async) {
             var url = ctx.val;
             if (/\.js/.test(url)) {
-                var srcipt = ctx.define('script');
-                ctx.elem().appendChild(script);
-                srcipt.onload = function (evt) {
-                    if (callback) callback(url, evt);
+                var srciptElem = ctx.define('script');
+                if (srciptElem) {
+                    srciptElem.onload = function (evt) {
+                        if (callback) callback(url, evt);
+                    }
+                    if (typeof async !== 'undefined') {
+                        srciptElem.async = !!async;
+                    }
+                    srciptElem.src = url;
+                    ctx.elem().appendChild(srciptElem);
                 }
-                if (typeof async !== 'undefined') {
-                    srcipt.async = async;
-                }
-                srcipt.src = url;
             } else if (/\.css/.test(url)) {
                 var link = ctx.define('link');
                 link.onload = function (evt) {

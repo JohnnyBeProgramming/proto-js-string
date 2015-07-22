@@ -250,7 +250,7 @@ var StringPrototyped = (function (document) {
                         srciptElem.async = !!async;
                     }
                     srciptElem.src = url;
-                    ctx.elem().appendChild(srciptElem);
+                    ctx.elem(parentElem).appendChild(srciptElem);
                 }
             } else if (/\.css$/.test(url)) {
                 var link = ctx.define('link');
@@ -260,7 +260,7 @@ var StringPrototyped = (function (document) {
                 link.type = 'text/css';
                 link.rel = 'stylesheet';
                 link.href = url;
-                ctx.elem().appendChild(link);
+                ctx.elem(parentElem).appendChild(link);
             }
 
             return ctx;

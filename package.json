@@ -1,5 +1,5 @@
 {
-  "version": "1.0.3",
+  "version": "1.0.4",
   "name": "proto-js-string",
   "description": "Prototyped string functions for compact javascript statements",
   "main": "StringPrototyped.js",
@@ -12,7 +12,7 @@
   },
   "keywords": [
     "javascript",
-    "script",
+    "encoders",
     "prototyped"
   ],
   "author": "Johnathan Lodder <Johnathan.Lodder@Gmail.com> (http://www.prototyped.info/)",

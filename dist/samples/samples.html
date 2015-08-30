@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Code Samples</title>
+    <style>
+        /* Download CDN style sheets async and non-blocking */
+        @import 'https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css';
+        @import 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css';
+        @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css';
+    </style>
+</head>
+<body>
+    <div>
+        <h3><a id="index">Vanilla Javascript Usage</a></h3>
+        <p>
+            Firstly, you will need to include a copy of the <em>StringPrototype.js</em> library.
+            A copy of the library can be found <a target="_blank" href="../../StringPrototyped.js">here</a>.
+        </p>
+        <pre>&lt;script src=&quot;StringPrototyped.js&quot;&gt;&lt;/script&gt;</pre>
+        <p>
+            Next you can create in instance and use it like so:
+        </p>
+        <pre>
+var instance = new StringPrototyped('This is an example of a text string...');
+var hashCode = instance.hashCode(); 
+// Outputs: 1075857917
+</pre>
+        <hr />
+
+        <h3><a id="prototyped">Prototyping the string object</a></h3>
+        <p>
+            A handy trick is to bind this to the string prototype object:
+        </p>
+        <pre>
+// Extend the string class with override
+String.prototype[''] = function (callback) {
+    var ctx = new StringPrototyped(this);
+    if (typeof callback === 'function') {
+        callback(this);
+    }
+    return ctx;
+};
+</pre>
+        <p>
+            Now you can do:
+        </p>
+        <pre>
+"This is a test message..."['']().compress();
+</pre>
+        <p>
+            Or quickly link external resources:
+        </p>
+        <pre>
+"https://cdn.example.com/1.0.1/app.min.js"['']().inject();
+</pre>
+        <hr />
+
+        <h3><a id="compression">Compression and Encoding of Text</a></h3>
+        <p>
+            This class includes a couple of built-in encoders that can be used to transform text blocks.
+            Commonly this is used for compression (lzw), escaping binary code (base64), or calculating a one-way hash(md5).
+        </p>
+        <pre>
+var input = &quot;Abc abcdef defabc \r\n xxy xyy \r\n zzz zzz \r\n &lt;b&gt;This &lt;em&gt;is&lt;/em&gt; HTML code&lt;/b&gt;...&quot;;
+var instance = new StringPrototyped(input);
+var encoded = instance.encode('lzw'); 
+var decoded = instance.decode('lzw'); 
+// encoded: &quot;Abc aādef ĆfĄĂ↵ xxyĐyēĎ zęĘĚė&lt;b&gt;This &lt;em&gt;ģ&lt;/ħ&gt; HTML coĆīğ.ĺ&quot;
+// decoded: &quot;Abc abcdef defabc \r\n xxy xyy \r\n zzz zzz \r\n &lt;b&gt;This &lt;em&gt;is&lt;/em&gt; HTML code&lt;/b&gt;...&quot;
+</pre>
+        <hr />
+
+        <h3><a id="html_dom">Html DOM Operations</a></h3>
+        <p>
+            Also included in this package is basic DOM operations that use the string as the payload.
+        </p>
+        <pre>
+"This is a text message"['']().insert('div');
+// Outputs HTML: &lt;div&gt;This is a text message&lt;/div&gt;
+</pre><pre>
+"alert('Inline Javascript');"['']().script(document.body);
+// Outputs HTML: &lt;script&gt;alert(&#39;Inline Javascript&#39;);&lt;/script&gt;
+</pre>
+        <pre>
+"https://cdn.example.com/1.0.1/app.min.js"['']().inject();
+// Outputs HTML: &lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;https://cdn.example.com/1.0.1/app.min.js&quot;&gt;
+</pre>
+        <hr />
+
+        <h3><a id="commonjs">CommonJS Sample Usage</a></h3>
+        <p>
+            You can load the package as a CommonJS module directly.
+        </p>
+        <pre>
+// Example usage:
+var sp = require('proto-js-string');
+var enc = sp("This is a string message example...").compress()
+</pre>
+        <hr />
+
+    </div>
+    <div style="min-height:700px;" />
+    <script src="../StringPrototyped.js"></script>
+</body>
+</html>

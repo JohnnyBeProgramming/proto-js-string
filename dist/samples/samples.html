@@ -10,50 +10,48 @@
         @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css';
     </style>
 </head>
-<body>
+<body style="padding-right: 8px;">
     <div>
         <h3><a id="index">Vanilla Javascript Usage</a></h3>
         <p>
             Firstly, you will need to include a copy of the <em>StringPrototype.js</em> library.
             A copy of the library can be found <a target="_blank" href="../../StringPrototyped.js">here</a>.
         </p>
-        <pre>&lt;script src=&quot;StringPrototyped.js&quot;&gt;&lt;/script&gt;</pre>
+        <div data-height="86" data-theme-id="18379" data-slug-hash="dYyPbz" data-default-tab="html" data-user="JohnnyBeProgramming" class='codepen'>
+            <pre><code>&lt;script src=&quot;StringPrototyped.js&quot;&gt;&lt;/script&gt;</code></pre>
+            <p>See the Pen <a href='http://codepen.io/JohnnyBeProgramming/pen/dYyPbz/'>dYyPbz</a> on <a href='http://codepen.io'>CodePen</a>.</p>
+        </div>
         <p>
-            Next you can create in instance and use it like so:
+            Next you can create an instance and use it like so:
         </p>
-        <pre>
-var instance = new StringPrototyped('This is an example of a text string...');
+        <div data-height="144" data-theme-id="18379" data-slug-hash="bVGNGO" data-default-tab="js" data-user="JohnnyBeProgramming" class='codepen'>
+            <pre><code>var instance = new StringPrototyped(&#39;This is an example of a text string...&#39;);
 var hashCode = instance.hashCode(); 
-// Outputs: 1075857917
-</pre>
+// Outputs: 1075857917</code></pre>
+            <p>See the Pen <a href='http://codepen.io/JohnnyBeProgramming/pen/bVGNGO/'>bVGNGO</a> on <a href='http://codepen.io'>CodePen</a>.</p>
+        </div>
         <hr />
 
         <h3><a id="prototyped">Prototyping the string object</a></h3>
         <p>
             A handy trick is to bind this to the string prototype object:
         </p>
-        <pre>
-// Extend the string class with override
-String.prototype[''] = function (callback) {
+        <div data-height="347" data-theme-id="18379" data-slug-hash="pjovgz" data-default-tab="js" data-user="JohnnyBeProgramming" class='codepen'>
+            <pre><code>// Extend the string class with override
+String.prototype[&#39;&#39;] = function (callback) {
     var ctx = new StringPrototyped(this);
-    if (typeof callback === 'function') {
+    if (typeof callback === &#39;function&#39;) {
         callback(this);
     }
     return ctx;
 };
-</pre>
-        <p>
-            Now you can do:
-        </p>
-        <pre>
-"This is a test message..."['']().compress();
-</pre>
-        <p>
-            Or quickly link external resources:
-        </p>
-        <pre>
-"https://cdn.example.com/1.0.1/app.min.js"['']().inject();
-</pre>
+// Now you can do:
+var encoded = &quot;This is a test message...&quot;[&#39;&#39;]().compress();
+// Or quickly link external resources:
+&quot;https://cdn.example.com/1.0.1/app.min.js&quot;[&#39;&#39;]().inject();</code></pre>
+            <p>See the Pen <a href='http://codepen.io/JohnnyBeProgramming/pen/pjovgz/'>pjovgz</a> on <a href='http://codepen.io'>CodePen</a>.</p>
+        </div>
+        <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
         <hr />
 
         <h3><a id="compression">Compression and Encoding of Text</a></h3>
@@ -61,46 +59,96 @@ String.prototype[''] = function (callback) {
             This class includes a couple of built-in encoders that can be used to transform text blocks.
             Commonly this is used for compression (lzw), escaping binary code (base64), or calculating a one-way hash(md5).
         </p>
-        <pre>
-var input = &quot;Abc abcdef defabc \r\n xxy xyy \r\n zzz zzz \r\n &lt;b&gt;This &lt;em&gt;is&lt;/em&gt; HTML code&lt;/b&gt;...&quot;;
+        <div data-height="234" data-theme-id="18379" data-slug-hash="EVxaKN" data-default-tab="js" data-user="JohnnyBeProgramming" class='codepen'>
+            <pre><code>var input = &quot;Abc abcdef defabc \r\n xxy xyy \r\n zzz zzz \r\n &lt;b&gt;This &lt;em&gt;is&lt;/em&gt; HTML code&lt;/b&gt;...&quot;;
 var instance = new StringPrototyped(input);
-var encoded = instance.encode('lzw'); 
-var decoded = instance.decode('lzw'); 
+var encoded = instance.encode(&#39;lzw&#39;); 
+var decoded = instance.decode(&#39;lzw&#39;); 
 // encoded: &quot;Abc aādef ĆfĄĂ↵ xxyĐyēĎ zęĘĚė&lt;b&gt;This &lt;em&gt;ģ&lt;/ħ&gt; HTML coĆīğ.ĺ&quot;
-// decoded: &quot;Abc abcdef defabc \r\n xxy xyy \r\n zzz zzz \r\n &lt;b&gt;This &lt;em&gt;is&lt;/em&gt; HTML code&lt;/b&gt;...&quot;
-</pre>
+// decoded: &quot;Abc abcdef defabc \r\n xxy xyy \r\n zzz zzz \r\n &lt;b&gt;This &lt;em&gt;is&lt;/em&gt; HTML code&lt;/b&gt;...&quot;</code></pre>
+            <p>See the Pen <a href='http://codepen.io/JohnnyBeProgramming/pen/EVxaKN/'>EVxaKN</a> on <a href='http://codepen.io'>CodePen</a>.</p>
+        </div>
         <hr />
 
         <h3><a id="html_dom">Html DOM Operations</a></h3>
         <p>
             Also included in this package is basic DOM operations that use the string as the payload.
         </p>
-        <pre>
-"This is a text message"['']().insert('div');
+        <div data-height="230" data-theme-id="18379" data-slug-hash="vNYEKR" data-default-tab="js" data-user="JohnnyBeProgramming" class='codepen'>
+            <pre><code>&quot;This is a text message&quot;[&#39;&#39;]().insert(&#39;div&#39;);
 // Outputs HTML: &lt;div&gt;This is a text message&lt;/div&gt;
-</pre><pre>
-"alert('Inline Javascript');"['']().script(document.body);
+&quot;alert(&#39;Inline Javascript&#39;);&quot;[&#39;&#39;]().script(document.body);
 // Outputs HTML: &lt;script&gt;alert(&#39;Inline Javascript&#39;);&lt;/script&gt;
-</pre>
-        <pre>
-"https://cdn.example.com/1.0.1/app.min.js"['']().inject();
-// Outputs HTML: &lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;https://cdn.example.com/1.0.1/app.min.js&quot;&gt;
-</pre>
+&quot;https://cdn.example.com/1.0.1/app.min.js&quot;[&#39;&#39;]().inject();
+// Outputs HTML: &lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;https://cdn.example.com/1.0.1/app.min.js&quot;&gt;</code></pre>
+            <p>See the Pen <a href='http://codepen.io/JohnnyBeProgramming/pen/vNYEKR/'>vNYEKR</a> on <a href='http://codepen.io'>CodePen</a>.</p>
+        </div>
         <hr />
 
         <h3><a id="commonjs">CommonJS Sample Usage</a></h3>
         <p>
             You can load the package as a CommonJS module directly.
         </p>
-        <pre>
-// Example usage:
-var sp = require('proto-js-string');
-var enc = sp("This is a string message example...").compress()
-</pre>
+        <div data-height="256" data-theme-id="18379" data-slug-hash="MaWYjw" data-default-tab="js" data-user="JohnnyBeProgramming" class='codepen'>
+            <pre><code>// Example usage:
+var str = &quot;This is a string message sample...\
+This sample message could be anything...\
+It works pretty well with plain text, JSON or source code...&quot;;
+var sp = require(&#39;proto-js-string&#39;);
+var enc = sp(str).compress()
+// Outputs: 
+// &quot;This Ă a string messageĈample.ĝĀąēęěďđēĕ could bĖa…ĝ.It workăprettyĻellĻiĴ ĚaČ text, JSON ĽĈĪrcĖĩdĜĝ&quot;</code></pre>
+            <p>See the Pen <a href='http://codepen.io/JohnnyBeProgramming/pen/MaWYjw/'>MaWYjw</a> on <a href='http://codepen.io'>CodePen</a>.</p>
+        </div>
         <hr />
 
     </div>
-    <div style="min-height:700px;" />
+    <div style="min-height:480px;" />
     <script src="../StringPrototyped.js"></script>
+    <script async src="https://assets.codepen.io/assets/embed/ei.js"></script>
+    <style>
+        .cp_embed_iframe {
+            margin-bottom: 8px;
+        }
+
+        .codepen p {
+            margin: 0;
+            padding: 0 8px 8px;
+            color: silver;
+            font-size: 9px;
+        }
+
+            .codepen p a {
+                color: #000000;
+                text-decoration: none;
+            }
+
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-button {
+            width: 8px;
+            height: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #eee;
+            border: thin solid lightgray;
+            box-shadow: 0px 0px 3px #dfdfdf inset;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #999;
+            border: thin solid gray;
+            border-radius: 10px;
+        }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #7d7d7d;
+            }
+    </style>
 </body>
 </html>

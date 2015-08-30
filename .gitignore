@@ -3,3 +3,4 @@
 /Project.sln
 /build/node_modules
 /.vs
+/src/Web.config

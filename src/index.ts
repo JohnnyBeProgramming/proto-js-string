@@ -11,14 +11,7 @@ if (typeof define === 'function' && define.amd) {
     define(proto.string.StringPrototyped);
 }
 
-// Extend the string class with prototype
-if (typeof (String) !== 'undefined') {
-    String.prototype[''] = function (callback) {
-        var input = this;
-        var ctx = new proto.string.StringPrototyped(input);
-        if (typeof callback === 'function') {
-            callback(input);
-        }
-        return ctx;
-    };
+// Register as a global class
+if (typeof window !== 'undefined') {
+    window['StringPrototyped'] = proto.string.StringPrototyped;
 }

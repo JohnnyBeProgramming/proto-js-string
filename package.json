@@ -2,9 +2,10 @@
   "version": "1.0.4",
   "name": "proto-js-string",
   "description": "Prototyped string functions for compact javascript statements",
-  "main": "StringPrototyped.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "author": "Johnathan Lodder <Johnathan.Lodder@Gmail.com> (http://www.prototyped.info/)",
+  "homepage": "https://github.com/JohnnyBeProgramming/proto-js-string",
+  "bugs": {
+    "url": "https://github.com/JohnnyBeProgramming/proto-js-string/issues"
   },
   "repository": {
     "type": "git",
@@ -15,10 +16,9 @@
     "encoders",
     "prototyped"
   ],
-  "author": "Johnathan Lodder <Johnathan.Lodder@Gmail.com> (http://www.prototyped.info/)",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/JohnnyBeProgramming/proto-js-string/issues"
-  },
-  "homepage": "https://github.com/JohnnyBeProgramming/proto-js-string"
+  "main": "dist/StringPrototyped.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }

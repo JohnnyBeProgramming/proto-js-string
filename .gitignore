@@ -1,1 +1,5 @@
 /node_modules
+/.vs/Project/v14/*.suo
+/Project.sln
+/build/node_modules
+/.vs

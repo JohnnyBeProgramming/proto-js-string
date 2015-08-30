@@ -37,6 +37,9 @@ A handy trick is to bind this to the string prototype object:
 This enables you to do some neat string operations on any string object:
 
     // Inline prototype examples
+    // Usage: <string>['']().<action>
+    // Where: <string> is any string
+    //        <action> is a function or property
     
     "Hello World"[''](alert)
     

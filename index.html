@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-us">
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>String Encoder Utilities (Javascript) by JohnnyBeProgramming</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,46 +8,48 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
+</head>
+<body>
     <section class="page-header">
-      <h1 class="project-name">String Encoder Utilities (Javascript)</h1>
-      <h2 class="project-tagline">Prototyped string functions for compact javascript statements</h2>
-      <a href="https://github.com/JohnnyBeProgramming/proto-js-string" class="btn">View on GitHub</a>
-      <a href="https://github.com/JohnnyBeProgramming/proto-js-string/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/JohnnyBeProgramming/proto-js-string/tarball/master" class="btn">Download .tar.gz</a>
+        <h1 class="project-name">String Encoder Utilities (Javascript)</h1>
+        <h2 class="project-tagline">Prototyped string functions for compact javascript statements</h2>
+        <a href="./dist/samples/index.html" class="btn"><strong>View Live Demo</strong></a>
+        <a href="https://github.com/JohnnyBeProgramming/proto-js-string" class="btn">View on GitHub</a>
+        <a href="https://github.com/JohnnyBeProgramming/proto-js-string/zipball/master" class="btn">Download .zip</a>
+        <a href="https://github.com/JohnnyBeProgramming/proto-js-string/tarball/master" class="btn">Download .tar.gz</a>
     </section>
 
     <section class="main-content">
-      <h2>
-<a id="prototyped-javascript-string-utils" class="anchor" href="#prototyped-javascript-string-utils" aria-hidden="true"><span class="octicon octicon-link"></span></a>Prototyped Javascript String Utils</h2>
+        <h2>
+            <a id="prototyped-javascript-string-utils" class="anchor" href="#prototyped-javascript-string-utils" aria-hidden="true"><span class="octicon octicon-link"></span></a>Prototyped Javascript String Utils
+        </h2>
 
-<p>This is a library of string encoders and other utility functions written purely for Javascript.</p>
+        <p>This is a library of string encoders and other utility functions written purely for Javascript.</p>
 
-<h2>
-<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting Started</h2>
+        <h2>
+            <a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting Started
+        </h2>
 
-<p>You can install the library from npm:</p>
+        <p>You can install the library from npm:</p>
 
 <pre><code>npm install proto-js-string --save-dev
 </code></pre>
 
-<h2>
-<a id="example-usage" class="anchor" href="#example-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example Usage</h2>
+        <h2>
+            <a id="example-usage" class="anchor" href="#example-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example Usage
+        </h2>
 
-<p>In NodeJS you can access the library with the require keyword:</p>
+        <p>In NodeJS you can access the library with the require keyword:</p>
 
 <pre><code>// Example usage:
 var StringPrototyped = require('proto-js-string');
-
 var enc = new StringPrototyped("This is a string message example...").compress()
 console.log('Encoded:', enc);
-
 var dec = new StringPrototyped(enc).decompress();
 console.log('Decoded:', dec);
 </code></pre>
 
-<p>A handy trick is to bind this to the string prototype object:</p>
+        <p>A handy trick is to bind this to the string prototype object:</p>
 
 <pre><code>// Extend the string class with override
 String.prototype[''] = function (callback) {
@@ -60,16 +62,12 @@ String.prototype[''] = function (callback) {
 };
 </code></pre>
 
-<p>This enables you to do some neat string operations on any string object:</p>
+        <p>This enables you to do some neat string operations on any string object:</p>
 
 <pre><code>// Inline prototype examples
-
 "Hello World"[''](alert)
-
 "alert(new Date())"['']().eval()
-
 "https://cdn.vendor/product/v1/lib.min.js"['']().inject()
-
 // Compression examples
 "This is a string message example..."['']().compress(function(enc) {
   console.log(' - Encoded: ', enc) 
@@ -78,52 +76,62 @@ String.prototype[''] = function (callback) {
 })
 </code></pre>
 
-<h2>
-<a id="motivation" class="anchor" href="#motivation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motivation</h2>
+        <h2>
+            <a id="motivation" class="anchor" href="#motivation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motivation
+        </h2>
 
-<p>This library was written because I needed access to a Lempel–Ziv–Welch (LZW) universal lossless data compression algorithm. After creating the utility, it became a good place to store other string operations (like creating a hash, md5 or base64).</p>
+        <p>This library was written because I needed access to a Lempel–Ziv–Welch (LZW) universal lossless data compression algorithm. After creating the utility, it became a good place to store other string operations (like creating a hash, md5 or base64).</p>
 
-<h2>
-<a id="tests" class="anchor" href="#tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tests</h2>
+        <h2>
+            <a id="tests" class="anchor" href="#tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tests
+        </h2>
 
-<p>No tests have been set up for this project.</p>
+        <p>No tests have been set up for this project.</p>
 
-<h2>
-<a id="contributors" class="anchor" href="#contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributors</h2>
+        <h2>
+            <a id="contributors" class="anchor" href="#contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributors
+        </h2>
 
-<p>This library is provided "as-is" and totally free to use. No support comes with it. If you want to make a contribution or include a new feature, you can create a pull request. I will reserve the right to update this package as new requirements become available.   </p>
+        <p>This library is provided "as-is" and totally free to use. No support comes with it. If you want to make a contribution or include a new feature, you can create a pull request. I will reserve the right to update this package as new requirements become available.   </p>
 
-<h2>
-<a id="mit-license" class="anchor" href="#mit-license" aria-hidden="true"><span class="octicon octicon-link"></span></a>MIT License</h2>
+        <h2>
+            <a id="mit-license" class="anchor" href="#mit-license" aria-hidden="true"><span class="octicon octicon-link"></span></a>MIT License
+        </h2>
 
-<p>Copyright (c) 2014-2015 JohnnyBeProgramming - <a href="http://www.prototyped.info">http://www.prototyped.info</a></p>
+        <p>Copyright (c) 2014-2015 JohnnyBeProgramming - <a href="http://www.prototyped.info">http://www.prototyped.info</a></p>
 
-<p>Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:</p>
+        <p>
+            Permission is hereby granted, free of charge, to any person obtaining a copy
+            of this software and associated documentation files (the "Software"), to deal
+            in the Software without restriction, including without limitation the rights
+            to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+            copies of the Software, and to permit persons to whom the Software is
+            furnished to do so, subject to the following conditions:
+        </p>
 
-<p>The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.</p>
+        <p>
+            The above copyright notice and this permission notice shall be included in
+            all copies or substantial portions of the Software.
+        </p>
 
-<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.</p>
+        <p>
+            THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+            IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+            FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+            AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+            LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+            OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+            THE SOFTWARE.
+        </p>
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/JohnnyBeProgramming/proto-js-string">String Encoder Utilities (Javascript)</a> is maintained by <a href="https://github.com/JohnnyBeProgramming">JohnnyBeProgramming</a>.</span>
+        <footer class="site-footer">
+            <span class="site-footer-owner"><a href="https://github.com/JohnnyBeProgramming/proto-js-string">String Encoder Utilities (Javascript)</a> is maintained by <a href="https://github.com/JohnnyBeProgramming">JohnnyBeProgramming</a>.</span>
 
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
+            <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+        </footer>
 
     </section>
 
-  
-  </body>
+
+</body>
 </html>

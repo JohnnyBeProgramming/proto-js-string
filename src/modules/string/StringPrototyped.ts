@@ -22,6 +22,24 @@ module proto.string {
 
         //#region "Encoders and Compression"
 
+        public encode(type?: string): string {
+            var instance = this.encoders.getEncoder(type || 'base64');
+            if (instance) {
+                this.val = instance.encode(this.val);
+                return this.val;
+            }
+            return null;
+        }
+
+        public decode(type?: string): string {
+            var instance = this.encoders.getEncoder(type || 'base64');
+            if (instance) {
+                this.val = instance.decode(this.val);
+                return this.val;
+            }
+            return null;
+        }
+
         public compress(callback: (ctx: string) => void, encoder?: string): StringPrototyped {
             if (!encoder) encoder = 'lzw';
             var worker = this.encoders.getEncoder(encoder);
@@ -107,5 +125,10 @@ module proto.string {
         //#endregion "DOM Operations"
 
     }
-    
+        
+}
+
+// Register as a global class
+if (typeof window !== 'undefined') {
+    window['StringPrototyped'] = proto.string.StringPrototyped;
 }

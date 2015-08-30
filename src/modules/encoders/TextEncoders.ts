@@ -1,6 +1,7 @@
 ﻿/// <reference path="../imports.d.ts" />
 /// <reference path="../encoders/ITextEncoder.ts" />
 /// <reference path="../encoders/MD5.ts" />
+/// <reference path="../encoders/URL.ts" />
 /// <reference path="../encoders/LZW.ts" />
 /// <reference path="../encoders/Base64.ts" />
 
@@ -15,6 +16,7 @@ module proto.encoders {
             // Define standard encoders
             this.encoders = [
                 new MD5(),
+                new URL(),
                 new LZW(),
                 new Base64(),
             ];

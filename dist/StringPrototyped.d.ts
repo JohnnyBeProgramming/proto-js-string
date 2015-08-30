@@ -28,6 +28,13 @@ declare module proto.encoders {
     }
 }
 declare module proto.encoders {
+    class URL implements ITextEncoder {
+        name: string;
+        encode(input: string): string;
+        decode(encrypted: string): string;
+    }
+}
+declare module proto.encoders {
     class LZW implements ITextEncoder {
         name: string;
         encode(input: string): string;
@@ -78,6 +85,8 @@ declare module proto.string {
         dom: proto.parsers.IHtmlDocumentParser;
         encoders: proto.encoders.TextEncoders;
         constructor(val: string);
+        encode(type?: string): string;
+        decode(type?: string): string;
         compress(callback: (ctx: string) => void, encoder?: string): StringPrototyped;
         decompress(callback: (ctx: string) => void, encoder?: string): StringPrototyped;
         md5(input?: string): string;

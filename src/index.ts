@@ -10,8 +10,3 @@ if (typeof module !== 'undefined') {
 if (typeof define === 'function' && define.amd) {
     define(proto.string.StringPrototyped);
 }
-
-// Register as a global class
-if (typeof window !== 'undefined') {
-    window['StringPrototyped'] = proto.string.StringPrototyped;
-}

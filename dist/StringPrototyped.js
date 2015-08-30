@@ -165,6 +165,25 @@ var proto;
 (function (proto) {
     var encoders;
     (function (encoders) {
+        var URL = (function () {
+            function URL() {
+                this.name = 'url';
+            }
+            URL.prototype.encode = function (input) {
+                return encodeURIComponent(input);
+            };
+            URL.prototype.decode = function (encrypted) {
+                return decodeURIComponent(encrypted);
+            };
+            return URL;
+        })();
+        encoders.URL = URL;
+    })(encoders = proto.encoders || (proto.encoders = {}));
+})(proto || (proto = {}));
+var proto;
+(function (proto) {
+    var encoders;
+    (function (encoders) {
         var LZW = (function () {
             function LZW() {
                 this.name = 'lzw';
@@ -338,6 +357,7 @@ var proto;
 /// <reference path="../imports.d.ts" />
 /// <reference path="../encoders/ITextEncoder.ts" />
 /// <reference path="../encoders/MD5.ts" />
+/// <reference path="../encoders/URL.ts" />
 /// <reference path="../encoders/LZW.ts" />
 /// <reference path="../encoders/Base64.ts" />
 var proto;
@@ -351,6 +371,7 @@ var proto;
                 // Define standard encoders
                 this.encoders = [
                     new encoders.MD5(),
+                    new encoders.URL(),
                     new encoders.LZW(),
                     new encoders.Base64(),
                 ];
@@ -487,6 +508,22 @@ var proto;
                 }
             }
             //#region "Encoders and Compression"
+            StringPrototyped.prototype.encode = function (type) {
+                var instance = this.encoders.getEncoder(type || 'base64');
+                if (instance) {
+                    this.val = instance.encode(this.val);
+                    return this.val;
+                }
+                return null;
+            };
+            StringPrototyped.prototype.decode = function (type) {
+                var instance = this.encoders.getEncoder(type || 'base64');
+                if (instance) {
+                    this.val = instance.decode(this.val);
+                    return this.val;
+                }
+                return null;
+            };
             StringPrototyped.prototype.compress = function (callback, encoder) {
                 if (!encoder)
                     encoder = 'lzw';
@@ -565,3 +602,7 @@ var proto;
         string.StringPrototyped = StringPrototyped;
     })(string = proto.string || (proto.string = {}));
 })(proto || (proto = {}));
+// Register as a global class
+if (typeof window !== 'undefined') {
+    window['StringPrototyped'] = proto.string.StringPrototyped;
+}

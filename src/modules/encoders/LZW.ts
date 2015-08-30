@@ -1,5 +1,5 @@
 ﻿module proto.encoders {
-
+    
     export class LZW implements ITextEncoder {
 
         public name: string = 'lzw';

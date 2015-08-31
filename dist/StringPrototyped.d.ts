@@ -14,6 +14,7 @@ declare module proto.encoders {
         static calculate(input: string): string;
         private static add_ext;
         private static hex_chr;
+        private _specialAdd;
         private static hex(input);
         private static md5cycle(x, k);
         private static cmn(q, a, b, x, s, t);

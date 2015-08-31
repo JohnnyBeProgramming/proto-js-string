@@ -80,7 +80,7 @@ module proto.string {
         }
 
         public eval(callback: (result: any) => void): StringPrototyped {
-            var input = this.val;
+            var input = this.val.toString();
             var val = eval(input);
             if (typeof callback === 'function') {
                 callback(val);

@@ -1,3 +1,4 @@
+/// <reference path="../encoders/TextEncoders.ts" />
 var proto;
 (function (proto) {
     var encoders;
@@ -13,8 +14,24 @@ var proto;
                 throw new Error('Permanent: Cannot decrypt one way md5 hash...');
             };
             MD5.calculate = function (input) {
-                return this.hex(this.md51(input));
+                console.log(' - Inputs:', input);
+                var result = this.md51(input);
+                console.log(' - Result:', result);
+                var hex = this.hex(this.md51(input));
+                console.log(' - HexVal:', hex);
+                return hex;
             };
+            Object.defineProperty(MD5.prototype, "_specialAdd", {
+                get: function () {
+                    if (MD5.add_ext == null) {
+                        MD5.add_ext = false;
+                        MD5.add_ext = MD5.calculate('hello') != '5d41402abc4b2a76b9719d911017c592';
+                    }
+                    return MD5.add_ext;
+                },
+                enumerable: true,
+                configurable: true
+            });
             MD5.hex = function (input) {
                 for (var i = 0; i < input.length; i++)
                     input[i] = this.rhex(input[i]);
@@ -109,7 +126,9 @@ var proto;
             };
             MD5.md51 = function (s) {
                 var txt = '';
-                var n = s.length, state = [1732584193, -271733879, -1732584194, 271733878], i;
+                var n = s.length;
+                var state = [1732584193, -271733879, -1732584194, 271733878];
+                var i;
                 for (i = 64; i <= s.length; i += 64) {
                     this.md5cycle(state, this.md5blk(s.substring(i - 64, i)));
                 }
@@ -145,10 +164,7 @@ var proto;
                 return s;
             };
             MD5.add32 = function (a, b) {
-                this.add_ext = this.add_ext != null
-                    ? this.add_ext
-                    : (this.add_ext = this.calculate('hello') != '5d41402abc4b2a76b9719d911017c592');
-                if (this.add_ext) {
+                if (MD5.add_ext) {
                     var lsw = (a & 0xFFFF) + (b & 0xFFFF), msw = (a >> 16) + (b >> 16) + (lsw >> 16);
                     return (msw << 16) | (lsw & 0xFFFF);
                 }
@@ -563,7 +579,7 @@ var proto;
                 return this.encoders.hashCode(input || this.val);
             };
             StringPrototyped.prototype.eval = function (callback) {
-                var input = this.val;
+                var input = this.val.toString();
                 var val = eval(input);
                 if (typeof callback === 'function') {
                     callback(val);

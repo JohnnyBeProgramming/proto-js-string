@@ -1,4 +1,6 @@
-﻿module proto.encoders {
+﻿/// <reference path="../encoders/TextEncoders.ts" />
+
+module proto.encoders {
 
     export class MD5 implements ITextEncoder {
 
@@ -13,11 +15,24 @@
         }
 
         public static calculate(input: string): string {
-            return this.hex(this.md51(input));
+            console.log(' - Inputs:', input);
+            var result = this.md51(input);
+            console.log(' - Result:', result);
+            var hex = this.hex(this.md51(input));
+            console.log(' - HexVal:', hex);
+            return hex;
         }
 
         private static add_ext: boolean = null;
         private static hex_chr: string[] = '0123456789abcdef'.split('');
+
+        private get _specialAdd(): boolean {
+            if (MD5.add_ext == null) {
+                MD5.add_ext = false;
+                MD5.add_ext = MD5.calculate('hello') != '5d41402abc4b2a76b9719d911017c592';
+            }
+            return MD5.add_ext;
+        }
 
         private static hex(input: any[]): string {
             for (var i = 0; i < input.length; i++)
@@ -125,8 +140,9 @@
 
         private static md51(s): number[] {
             var txt = '';
-            var n = s.length,
-                state = [1732584193, -271733879, -1732584194, 271733878], i;
+            var n = s.length;
+            var state = [1732584193, -271733879, -1732584194, 271733878];
+            var i;
             for (i = 64; i <= s.length; i += 64) {
                 this.md5cycle(state, this.md5blk(s.substring(i - 64, i)));
             }
@@ -164,10 +180,7 @@
         }
 
         private static add32(a, b) {
-            this.add_ext = this.add_ext != null
-                ? this.add_ext
-                : (this.add_ext = this.calculate('hello') != '5d41402abc4b2a76b9719d911017c592');
-            if (this.add_ext) {
+            if (MD5.add_ext) {
                 var lsw = (a & 0xFFFF) + (b & 0xFFFF),
                     msw = (a >> 16) + (b >> 16) + (lsw >> 16);
                 return (msw << 16) | (lsw & 0xFFFF);
